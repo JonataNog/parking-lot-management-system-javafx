@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="519.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GerenciarVagasViewController">
+   <children>
+      <Label text="Alugar uma nova vaga">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <AnchorPane prefHeight="75.0" prefWidth="508.0">
+         <children>
+            <Button fx:id="btAlugar" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtAlugarAction" text="Alugar" />
+            <Label layoutX="230.0" layoutY="27.0" text="Vagas ocupadas">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </AnchorPane>
+      <TableView fx:id="tableViewVagas" prefHeight="298.0" prefWidth="508.0">
+        <columns>
+          <TableColumn fx:id="tableColumnNumVaga" prefWidth="92.0" text="Número vaga" />
+          <TableColumn fx:id="tableColumnNome" minWidth="7.0" prefWidth="156.0" text="Nome cliente" />
+            <TableColumn fx:id="tableColumnPlaca" prefWidth="104.0" text="Placa do veículo" />
+            <TableColumn fx:id="tableColumnTipoVeiculo" prefWidth="100.0" text="Tipo do veículo" />
+            <TableColumn fx:id="tableColumnFINALIZAR" minWidth="0.0" prefWidth="91.0" text="Hora da saída" />
+            <TableColumn fx:id="tableColumnREMOVE" minWidth="4.0" prefWidth="126.0" />
+        </columns>
+      </TableView>
+      <AnchorPane prefHeight="73.0" prefWidth="670.0">
+         <children>
+            <Button fx:id="btFechar" layoutX="298.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtFecharAction" prefHeight="46.0" prefWidth="75.0" text="Fechar" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
