@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -36,7 +37,8 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 	
 	private VagaServicos servicos;
 	private ObservableList<Vaga> obsListVaga;
-	private static Vaga aux = new Vaga();
+	//private static Vaga aux = new Vaga();
+	private List<DataChangeListener> dataChangeListerners = new ArrayList<>();
 	
 	@FXML
 	private TableView<Vaga> tableViewVagas;
@@ -65,6 +67,8 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 	@FXML
 	private Button btFechar;
 	
+	//private TextField txtAux = new TextField();
+	
 	private TextField txtHoraSaida = new TextField();
 	
 	@Override
@@ -77,6 +81,7 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 		Stage parentStage = Utils.currentStage(evento);
 		Vaga obj = new Vaga();
 		createAlugarVagaView(obj, "/gui/AlugarVagaView.fxml", parentStage);
+		notifyDataChangeListeners();
 	}
 	
 	@FXML
@@ -87,6 +92,16 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 	@Override
 	public void onDataChanged() {
 		updateTableView();
+	}
+	
+	private void notifyDataChangeListeners() {
+		for (DataChangeListener listener : dataChangeListerners) {
+			listener.onDataChanged();
+		}
+	}
+	
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		dataChangeListerners.add(listener);
 	}
 	
 	public void setVagaServicos(VagaServicos servicos) {
@@ -110,8 +125,8 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 		List<Vaga> lista = servicos.getListaVagasOcupadas();
 		obsListVaga = FXCollections.observableArrayList(lista);
 		tableViewVagas.setItems(obsListVaga);
-		initRemoveButtons();
 		initFinalizarTxtFields();
+		initRemoveButtons();
 	}
 	
 	private void initRemoveButtons() {
@@ -127,7 +142,7 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 					return;
 				}
 				setGraphic(button);
-				obj.setHoraSaida(aux.getHoraSaida());
+				obj.setHoraSaida(txtHoraSaida.getText());
 				button.setOnAction(event -> removeEntidade(obj, event));
 			}
 		});
@@ -136,7 +151,8 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 	private void initFinalizarTxtFields() {
 		tableColumnFINALIZAR.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnFINALIZAR.setCellFactory(param -> new TableCell<Vaga, Vaga>() {
-
+			//private final TextField txtHoraSaida = new TextField();
+			
 			@Override
 			protected void updateItem(Vaga obj, boolean empty) {
 				super.updateItem(obj, empty);
@@ -145,6 +161,8 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 					return;
 				}
 				setGraphic(txtHoraSaida);
+				//txtAux.setText(txtHoraSaida.getText());
+				
 			}
 			
 		});
@@ -167,6 +185,7 @@ public class GerenciarVagasViewController implements Initializable, DataChangeLi
 				Stage parentStage = Utils.currentStage(evento);
 				updateTableView();
 				createReciboView(obj, "ReciboView.fxml", parentStage);
+				notifyDataChangeListeners();
 			}
 			catch(Exception e) {
 				Alerts.showAlert("Hora da saída em branco", null, e.getMessage(), AlertType.ERROR);

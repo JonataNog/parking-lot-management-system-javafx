@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import gui.util.Utils;
 import modelo.entidades.Vaga;
 
 public class VagaServicos {
@@ -15,7 +14,7 @@ public class VagaServicos {
 	private final double preco = 5.5;
 	
 	public void iniciaVagas() {
-		for(int i = 1; i <= 48; i++) {
+		for(int i = 1; i <= 18; i++) {
 			Vaga vaga = new Vaga(i);
 			listaVagas.add(vaga);
 		}
