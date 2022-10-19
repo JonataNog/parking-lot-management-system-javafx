@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Vaga {
     
     private Integer numero;
-    private boolean disponivel = true;
+    private boolean disponivel;
     private Veiculo veiculo;
     private String placa;
     private String tipoVeiculo;

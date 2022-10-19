@@ -73,9 +73,5 @@ public class Cliente {
 		return "Cliente [nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + ", fidelidade=" + fidelidade
 				+ "]";
 	}
-	
-	public void cadastraCliente() {
-		
-	}
 
 }

@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import gui.util.Utils;
 import modelo.entidades.Vaga;
@@ -13,36 +14,31 @@ public class VagaServicos {
 	private static List<Vaga> listaVagas = new ArrayList<>();
 	private static List<Vaga> listaVagasOcupadas = new ArrayList<>();
 	private final double preco = 5.5;
-	
+
 	public void iniciaVagas() {
 		for(int i = 1; i <= 48; i++) {
 			Vaga vaga = new Vaga(i);
 			listaVagas.add(vaga);
 		}
 	}
+
 	
 	public boolean listaEstaVazia() {
-		if(listaVagas.isEmpty()) {
-			return true;
-		}
-		return false;
+		return listaVagas.isEmpty();
 	}
 	
 	public void ocuparVaga(Vaga vaga) {
-		encontraPorNumero(vaga).setDisponivel(false);
+		Objects.requireNonNull(encontraPorNumero(vaga)).setDisponivel(false);
 		listaVagasOcupadas.add(vaga);
 	}
 	
 	public void liberarVaga(Vaga vaga) {
-		encontraPorNumero(vaga).setDisponivel(true);
+		Objects.requireNonNull(encontraPorNumero(vaga)).setDisponivel(true);
 		listaVagasOcupadas.remove(vaga);
 	}
 	
 	public boolean estaDisponivel(Vaga vaga) {
-		if(encontraPorNumero(vaga).isDisponivel()) {
-			return true;
-		}
-		return false;
+		return Objects.requireNonNull(encontraPorNumero(vaga)).isDisponivel();
 	}
 	
 	private Vaga encontraPorNumero(Vaga vaga) {
@@ -55,7 +51,7 @@ public class VagaServicos {
 	}
 	
 	public double valorTotal(Vaga vaga) {
-		int horas = calculaHoras(vaga);
+		int horas = Objects.requireNonNull(calculaHoras(vaga));
 		return horas * preco;
 	}
 	
