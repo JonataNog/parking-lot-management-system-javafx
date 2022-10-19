@@ -11,7 +11,7 @@ public class VagaServicos {
 	
 	private static List<Vaga> listaVagas = new ArrayList<>();
 	private static List<Vaga> listaVagasOcupadas = new ArrayList<>();
-	private final double preco = 5.5;
+	private static Double preco = 5.5;
 	
 	public void iniciaVagas() {
 		for(int i = 1; i <= 18; i++) {
@@ -73,4 +73,13 @@ public class VagaServicos {
 	public List<Vaga> getListaVagasOcupadas() {
 		return listaVagasOcupadas;
 	}
+
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		VagaServicos.preco = preco;
+	}
+	
 }

@@ -179,7 +179,7 @@ public class AlugarVagaViewController implements Initializable {
 			exception.addError("vagaNumerica", "Digite apenas números");
 		}
 		if(aux != null) {
-			if(aux < 1 || aux > 48) {
+			if(aux < 1 || aux > 18) {
 				exception.addError("vagaInvalida", "Vaga inválida");
 			}else if(!servicos.listaEstaVazia()) {
 				if(!servicos.estaDisponivel(obj))
@@ -207,8 +207,7 @@ public class AlugarVagaViewController implements Initializable {
 		txtNome.setText(entidade.getCliente().getNome());
 		txtCpf.setText(entidade.getCliente().getCpf());
 		txtTelefone.setText(entidade.getCliente().getTelefone());
-		txtNumVaga.setText(String.valueOf(entidade.getNumero()));
-		
+		txtHoraEntrada.setText(entidade.getHoraEntrada());
 	}
 	
 	public void setVaga(Vaga entidade) {

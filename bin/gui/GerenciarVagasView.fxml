@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="519.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GerenciarVagasViewController">
+<VBox prefHeight="519.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GerenciarVagasViewController">
    <children>
       <Label text="Alugar uma nova vaga">
          <font>
@@ -38,8 +38,8 @@
           <TableColumn fx:id="tableColumnNome" minWidth="7.0" prefWidth="156.0" text="Nome cliente" />
             <TableColumn fx:id="tableColumnPlaca" prefWidth="104.0" text="Placa do veículo" />
             <TableColumn fx:id="tableColumnTipoVeiculo" prefWidth="100.0" text="Tipo do veículo" />
-            <TableColumn fx:id="tableColumnFINALIZAR" minWidth="0.0" prefWidth="91.0" text="Hora da saída" />
-            <TableColumn fx:id="tableColumnREMOVE" minWidth="4.0" prefWidth="126.0" />
+            <TableColumn fx:id="tableColumnEDITAR" prefWidth="98.0" />
+            <TableColumn fx:id="tableColumnREMOVE" minWidth="4.0" prefWidth="113.0" />
         </columns>
       </TableView>
       <AnchorPane prefHeight="73.0" prefWidth="670.0">

@@ -105,6 +105,7 @@
                </font>
             </Label>
             <TextField fx:id="txtNumVaga" GridPane.columnIndex="1" />
+            <TextField fx:id="txtHoraEntrada" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="labelErroNumVaga" textFill="RED" GridPane.columnIndex="2" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
@@ -125,7 +126,6 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtHoraEntrada" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="labelErroHoraSaida" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>

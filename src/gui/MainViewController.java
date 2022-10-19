@@ -85,6 +85,9 @@ public class MainViewController implements Initializable, DataChangeListener{
 	@FXML
 	private Button btGerenciarVagas;
 	
+	@FXML
+	private Button btGerenciarPrecos;
+	
 	@Override
 	public void initialize(URL uri, ResourceBundle rb) {
 		preencheLista();
@@ -94,6 +97,12 @@ public class MainViewController implements Initializable, DataChangeListener{
 	public void onBtGerenciarVagasAction(ActionEvent evento) {
 		Stage parentStage = Utils.currentStage(evento);
 		criarGerenciarVagasView("/gui/GerenciarVagasView.fxml", parentStage);
+	}
+	
+	@FXML
+	public void onBtGerenciarPrecosAction(ActionEvent evento) {
+		Stage parentStage = Utils.currentStage(evento);
+		criarGerenciarPrecosView("/gui/GerenciarPrecosView.fxml", parentStage);
 	}
 	
 	private void criarGerenciarVagasView(String absoluteName, Stage parentStage) {
@@ -109,6 +118,27 @@ public class MainViewController implements Initializable, DataChangeListener{
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Entre com os dados para finalizar a vaga");
+			dialogStage.setScene(new Scene(pane));
+			dialogStage.setResizable(false);
+			dialogStage.initOwner(parentStage);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Erro pra carregar a view", e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	private void criarGerenciarPrecosView(String absoluteName, Stage parentStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+
+			GerenciarPrecosViewController controller = loader.getController();
+			controller.setVagaServicos(new VagaServicos());
+
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Entre com os dados dos preços");
 			dialogStage.setScene(new Scene(pane));
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(parentStage);
